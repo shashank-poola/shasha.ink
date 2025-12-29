@@ -6,11 +6,9 @@ export const DATA = {
   initials: "SP",
   url: "https://github.com/shashank-poola",
   location: "India",
-  locationLink: "https://www.google.com/maps/place/india",
-  description:
-    "Full Stack Developer from India with hands-on experience taking products from 0→100. I love building fast, reliable,user-focused web applications and thrive. Strong in both frontend and backend, with a focus on clean architecture and practical execution.",
+  locationLink: "https://www.google.com/maps/place/india", 
   summary:
-    "Full Stack Developer from India with hands-on experience taking products from 0→100. I love building fast, reliable,user-focused web applications and thrive. Strong in both frontend and backend, with a focus on clean architecture and practical execution.",
+    "I’m a Full-Stack Developer from India with hands-on experience taking products from 0 → 100. I enjoy building fast, reliable, and user-focused web applications. I work comfortably across both frontend and backend, with a strong focus on clean architecture, better UI/UX execution.",
   avatarUrl: "/xprofile.jpg",
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -38,10 +36,16 @@ export const DATA = {
         navbar: true,
       },
       email: {
-        name: "Send Email",
-        url: "shashankpoolaworks@gmail.com",
+        name: "Email",
+        url: "mailto:shashankpoola123@gmail.com",
         icon: Icons.email,
-        navbar: false,
+        navbar: true,
+      },
+      resume: {
+        name: "Resume",
+        url: "/shashankresume.pdf",
+        icon: Icons.file,
+        navbar: true,
       },
     },
   },

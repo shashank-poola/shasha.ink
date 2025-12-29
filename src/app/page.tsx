@@ -5,6 +5,12 @@ import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { WORK_DATA } from "@/data/work";
 import { EDUCATION_DATA } from "@/data/education";
@@ -12,9 +18,10 @@ import { PROJECTS_DATA } from "@/data/projects";
 import { SKILLS_DATA } from "@/data/skills";
 import GitHubContributions from "@/components/github-contributions";
 import { Icons } from "@/components/icons";
-import { Mail, Calendar, MessageCircle } from "lucide-react";
+import { Mail, Calendar, MessageCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import { useState } from "react";
 
 // Map icon strings to components
 const iconMap: Record<string, React.ReactNode> = {
@@ -48,41 +55,41 @@ export default function Page() {
           <div 
             className="absolute left-0 top-0 bottom-0 w-px dark:hidden"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
               backgroundRepeat: 'repeat-y',
             }}
           />
           <div 
             className="absolute left-0 top-0 bottom-0 w-px hidden dark:block"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
               backgroundRepeat: 'repeat-y',
             }}
           />
           <div 
             className="absolute right-0 top-0 bottom-0 w-px dark:hidden"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
               backgroundRepeat: 'repeat-y',
             }}
           />
           <div 
             className="absolute right-0 top-0 bottom-0 w-px hidden dark:block"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='1' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='0' y2='12' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
               backgroundRepeat: 'repeat-y',
             }}
           />
         </div>
       </div>
       
-      <main className="relative flex flex-col min-h-[100dvh] max-w-3xl mx-auto py-8 z-10">
+      <main className="relative flex flex-col min-h-[100dvh] max-w-3xl mx-auto py-20 z-10">
         <div 
           className="mb-8 h-px w-screen dark:hidden"
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -91,7 +98,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -105,7 +112,16 @@ export default function Page() {
                   <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                   <AvatarFallback>{DATA.initials}</AvatarFallback>
                 </Avatar>
-                <div className="absolute -bottom-0 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></div>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <div className="absolute bottom-6 right-0 translate-x-1/4 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900 cursor-pointer"></div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="text-sm font-medium">Available for work</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
               <div className="flex items-center gap-3">
                 <div className="flex flex-col">
@@ -139,14 +155,14 @@ export default function Page() {
             <div className="flex flex-wrap gap-2">
               <Button asChild size="default" className="rounded-full text-sm">
                 <Link href={DATA.contact.social.X.url}>
-                  <Calendar className="mr-1 h-4 w-4" />
-                  Book an intro call
+                  <Icons.x className="mr-1 h-4 w-4" />
+                  Message on X
                 </Link>
               </Button>
               <Button asChild variant="outline" size="default" className="rounded-full text-sm">
                 <Link href={`mailto:${DATA.contact.email}`}>
                   <Mail className="mr-1 h-4 w-4" />
-                  Send an email
+                  Send email
                 </Link>
               </Button>
             </div>
@@ -159,7 +175,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -168,7 +184,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -215,6 +231,18 @@ export default function Page() {
                   LinkedIn
                 </Link>
               </Button>
+              <Button asChild variant="outline" size="default" className="rounded-full text-sm">
+                <Link href="mailto:shashankpoola123@gmail.com" target="_blank">
+                  <Mail className="mr-1 h-4 w-4" />
+                  Mail
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="default" className="rounded-full text-sm">
+                <Link href="/shashankresume.pdf" target="_blank" rel="noopener noreferrer">
+                  <FileText className="mr-1 h-4 w-4" />
+                  Resume
+                </Link>
+              </Button>
             </div>
           </BlurFade>
 
@@ -232,7 +260,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -241,7 +269,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -276,7 +304,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -285,7 +313,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -309,10 +337,13 @@ export default function Page() {
                 "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain.svg",
                 "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
                 "Github": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
-                "Rust": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-plain.svg",
+                "Rust": "/rust.png",
                 "MongoDb": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
                 "Redis": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
                 "Vercel": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
+                "Tailwind": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+                "NodeJS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+                "Bun": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bun/bun-original.svg",
               };
               const iconUrl = skillIconMap[skill] || null;
               return (
@@ -335,7 +366,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -344,7 +375,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -382,7 +413,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -391,7 +422,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -427,7 +458,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23e5e7eb' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -436,7 +467,7 @@ export default function Page() {
           style={{
             marginLeft: 'calc(-50vw + 50%)',
             marginRight: 'calc(-50vw + 50%)',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='1' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='12' y2='0' stroke='%23374151' stroke-width='2' stroke-dasharray='6,4'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat-x',
           }}
         />
@@ -450,14 +481,7 @@ export default function Page() {
                 Get in Touch
               </h2>
               <p className="text-muted-foreground text-base">
-                Want to chat? Just shoot me a{" "}
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
-                >
-                  dm
-                </Link>{" "}
-                and I&apos;ll respond whenever I can.
+              Open to conversations, ideas, and collaborations. Send a message anytime.
               </p>
             </div>
           </BlurFade>

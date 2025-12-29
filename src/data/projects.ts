@@ -89,7 +89,7 @@ export const PROJECTS_DATA = [
     href: "#",
     active: true,
     description:
-      "Visual workflow automation platform built with React and FastAPI. Design, connect, and automate workflows in real time with a drag-and-drop interface.",
+      "A prediction market with Yes/No markets and live order books, enabling users to trade opinions across politics, sports, entertainment, and crypto with low-latency execution and continuous price updates.",
     technologies: [
       "NextJS",
       "Privy",
@@ -106,7 +106,7 @@ export const PROJECTS_DATA = [
         icon: "github",
       },
     ],
-    image: "",
+    image: "/projects/Plutomarket.png",
     video: "",
   },
   {
