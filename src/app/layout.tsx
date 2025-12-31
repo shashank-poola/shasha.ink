@@ -71,6 +71,25 @@ export default function RootLayout({
             gtag('config', 'G-PSJJ84TVRK');
           `
         }} />
+
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Shashank Poola",
+              "url": "https://shasha.ink",
+              "sameAs": [
+                "https://github.com/shashank-poola",
+                "https://www.linkedin.com/in/shashankpoola",
+                "https://x.com/shashankpoola"
+              ],
+              "jobTitle": "Full-Stack / Systems Engineer"
+            }),
+          }}
+        />
       </head>
       <body
         className={cn(
