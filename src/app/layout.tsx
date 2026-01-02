@@ -84,9 +84,10 @@ export default function RootLayout({
               "sameAs": [
                 "https://github.com/shashank-poola",
                 "https://www.linkedin.com/in/shashankpoola",
-                "https://x.com/shashankpoola"
+                "https://x.com/shashankpoola",
+                "https://instagram.com/shashankpoola"
               ],
-              "jobTitle": "Full-Stack / Systems Engineer"
+              "jobTitle": "Full-Stack/Web3 Engineer"
             }),
           }}
         />
