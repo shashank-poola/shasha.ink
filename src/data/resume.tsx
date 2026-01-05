@@ -43,7 +43,7 @@ export const DATA = {
       },
       resume: {
         name: "Resume",
-        url: "/shashankresume.pdf",
+        url: "/resume.pdf",
         icon: Icons.file,
         navbar: true,
       },

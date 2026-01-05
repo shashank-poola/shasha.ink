@@ -239,7 +239,7 @@ export default function Page() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="default" className="rounded-full text-sm">
-                <Link href="/shashankresume.pdf" target="_blank" rel="noopener noreferrer">
+                <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
                   <FileText className="mr-1 h-4 w-4" />
                   Resume
                 </Link>

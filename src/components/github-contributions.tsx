@@ -2,6 +2,7 @@
 
 import { GitHubCalendar } from "react-github-calendar";
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 interface GitHubContributionsProps {
   username: string;
@@ -11,6 +12,7 @@ export default function GitHubContributions({
   username,
 }: GitHubContributionsProps) {
   const [isMounted, setIsMounted] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setIsMounted(true);
@@ -28,7 +30,7 @@ export default function GitHubContributions({
         username={username}
         blockSize={12}
         blockMargin={3}
-        colorScheme="light"
+        colorScheme={theme === "dark" ? "dark" : "light"}
         fontSize={12}
         style={{
           width: "50%",
