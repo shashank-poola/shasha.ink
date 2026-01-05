@@ -75,7 +75,7 @@ export const PROJECTS_DATA = [
     links: [
       {
         type: "Website",
-        href: "https://tipfinity-v2",
+        href: "https://tipfinity.xyz",
         icon: "globe",
       },
       {
