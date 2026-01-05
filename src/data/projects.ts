@@ -58,30 +58,33 @@ export const PROJECTS_DATA = [
     video: "",
   },
   {
-    title: "HighlightText",
-    href: "https://github.com/shashank-poola/highlightnow",
+    title: "Tipfinity",
+    href: "https://github.com/shashank-poola/tipfinity-v2",
     active: true,
     description:
-      "HighlightText is a simple web extension that lets you highlight text on any website in multiple colors for quick reference.Menu has colors (different colors), Copy, Export option and clear all section.",
+      "Tipfinity is an instant creator tipping platform built on Solana, allowing fans to support creators in seconds with near-zero fees.",
     technologies: [
+      "Solana",
+      "NextJS",
+      "Bun",
       "Typescript",
-      "Chrome Extension",
-      "Javascript",
-      "Bun"
+      "Prisma",
+      "Postgresql",
+      "Docker",
     ],
     links: [
       {
         type: "Website",
-        href: "https://chromewebstore.google.com/detail/ecpddieccnjppapnicmfoddgbedcadgb?utm_source=item-share-cb",
+        href: "https://tipfinity-v2",
         icon: "globe",
       },
       {
         type: "Github",
-        href: "https://github.com/shashank-poola/highlightnow",
+        href: "https://github.com/shashank-poola/tipfinity",
         icon: "github",
       },
     ],
-    image: "/projects/highlighttext.png",
+    image: "/projects/tipfinity.png",
     video: "",
   },
   {
@@ -107,6 +110,33 @@ export const PROJECTS_DATA = [
       },
     ],
     image: "/projects/Plutomarket.png",
+    video: "",
+  },
+  {
+    title: "HighlightText",
+    href: "https://github.com/shashank-poola/highlightnow",
+    active: true,
+    description:
+      "HighlightText is a simple web extension that lets you highlight text on any website in multiple colors for quick reference.Menu has colors (different colors), Copy, Export option and clear all section.",
+    technologies: [
+      "Typescript",
+      "Chrome Extension",
+      "Javascript",
+      "Bun"
+    ],
+    links: [
+      {
+        type: "Website",
+        href: "https://chromewebstore.google.com/detail/ecpddieccnjppapnicmfoddgbedcadgb?utm_source=item-share-cb",
+        icon: "globe",
+      },
+      {
+        type: "Github",
+        href: "https://github.com/shashank-poola/highlightnow",
+        icon: "github",
+      },
+    ],
+    image: "/projects/highlighttext.png",
     video: "",
   },
   {
