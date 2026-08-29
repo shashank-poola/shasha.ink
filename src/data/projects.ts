@@ -2,11 +2,11 @@ import { LucideIcon } from "lucide-react";
 
 export const PROJECTS_DATA = [
   {
-    title: "PullRabbit",
-    href: "https://github.com/shashank-poola/pullrabbit.git",
+    title: "OpenMerge",
+    href: "https://github.com/shashank-poola/openmerge.git",
     active: true,
     description:
-      "AI-first pull request reviewer with context aware feedback, LangGraph multi-agent pipeline (3 parallel agents), line by line code suggestions, BullMQ/Redis job queue, AST + call graph context fetching. Self-hostable, open source.",
+      "AI pull request code reviewer with context aware feedback, LangGraph multi-agent pipeline (3 parallel agents), line by line code suggestions, BullMQ/Redis job queue, AST + call graph context fetching. Self-hostable, open source.",
     technologies: [
       "Typescript",
       "NextJS",
@@ -19,7 +19,7 @@ export const PROJECTS_DATA = [
     links: [
       {
         type: "Website",
-        href: "https://pullrabbit.shashank.ink",
+        href: "https://openmerge.shashank.ink",
         icon: "globe",
       },
       {
